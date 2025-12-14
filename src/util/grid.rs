@@ -45,15 +45,6 @@ impl Grid<u8> {
 }
 
 impl<T: PartialEq> Grid<T> {
-    #[inline]
-    pub fn contains<P>(&self, point: P) -> bool
-    where
-        P: Borrow<Point>,
-    {
-        let point = point.borrow();
-        point.x >= 0 && point.x < self.width as i64 && point.y >= 0 && point.y < self.height as i64
-    }
-
     pub fn find<U>(&self, needle: U) -> Option<Point>
     where
         T: Borrow<U>,
@@ -124,6 +115,27 @@ impl<T> Grid<T> {
             grid: self,
             x: 0,
             y: 0,
+        }
+    }
+
+    #[inline]
+    pub fn contains<P>(&self, point: P) -> bool
+    where
+        P: Borrow<Point>,
+    {
+        let point = point.borrow();
+        point.x >= 0 && point.x < self.width as i64 && point.y >= 0 && point.y < self.height as i64
+    }
+
+    pub fn get<P>(&self, point: P) -> Option<&T>
+    where
+        P: Borrow<Point>,
+    {
+        let point = point.borrow();
+        if self.contains(point) {
+            Some(&self[point])
+        } else {
+            None
         }
     }
 }
