@@ -51,6 +51,14 @@ impl Point {
     pub fn counter_clockwise(self) -> Self {
         Point::new(self.y, -self.x)
     }
+
+    pub fn all_neighbors(&self) -> Vec<Point> {
+        DIAGONALS.iter().map(|dir| *self + *dir).collect()
+    }
+
+    pub fn orthogonal_neighbors(&self) -> Vec<Point> {
+        ORTHOGONALS.iter().map(|dir| *self + *dir).collect()
+    }
 }
 
 impl From<u8> for Point {
