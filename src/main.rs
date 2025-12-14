@@ -58,7 +58,7 @@ fn get_day_input(day: u8) -> (Vec<String>, bool) {
     if env::var("EXAMPLE").is_ok() {
         return (example::EXAMPLE
             .lines()
-            .map(|l| l.trim().to_string())
+            .map(|l| l.to_string())
             .collect::<Vec<String>>(), true);
     }
 
