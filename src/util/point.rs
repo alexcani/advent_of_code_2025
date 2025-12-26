@@ -59,6 +59,22 @@ impl Point {
     pub fn orthogonal_neighbors(&self) -> Vec<Point> {
         ORTHOGONALS.iter().map(|dir| *self + *dir).collect()
     }
+
+    pub fn down(&self, n: i64) -> Self {
+        *self + DOWN * n
+    }
+
+    pub fn up(&self, n: i64) -> Self {
+        *self + UP * n
+    }
+
+    pub fn left(&self, n: i64) -> Self {
+        *self + LEFT * n
+    }
+
+    pub fn right(&self, n: i64) -> Self {
+        *self + RIGHT * n
+    }
 }
 
 impl From<u8> for Point {
